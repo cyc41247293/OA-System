@@ -8,7 +8,7 @@ function get_image_code() {
     $(".captcha-code").attr("value",code);
 }
 
-//html代码结束之后，首选运行
+
 $(document).ready(function(){
     get_image_code();
     //点击获取图形验证码

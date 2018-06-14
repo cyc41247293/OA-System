@@ -3,11 +3,11 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 # 连接数据库的数据
-HOSTNAME = '192.168.115.128'
+HOSTNAME = '127.0.0.1'
 PORT = '3306'
 DATABASE = 'tornado_test_003'
-USERNAME = 'cyc'
-PASSWORD = 'cyc'
+USERNAME = 'ubuntu'
+PASSWORD = 'ubuntu'
 # DB_URI的格式：dialect（mysql/sqlite）+driver://username:password@host:port/database?charset=utf8
 DB_URI = 'mysql+pymysql://{}:{}@{}:{}/{}?charset=utf8'.format(USERNAME,
                                                               PASSWORD,

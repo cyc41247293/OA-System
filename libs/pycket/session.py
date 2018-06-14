@@ -258,3 +258,5 @@ def create_mixin(context, manager_property, manager_class):
         setattr(context, manager_property, manager_class(context))
     #getattr用法：getattr(对象，属性字符串）
     return getattr(context, manager_property)
+
+

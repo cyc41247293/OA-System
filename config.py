@@ -1,6 +1,6 @@
 #coding=utf-8
-# from libs.flash.flash_lib import get_flashed_messages
-# from libs.permission.permission_auth.permission_interface_libs import menu_permission
+from libs.flash.flash_lib import get_flashed_messages
+from libs.permission.permission_auth.permission_interface_libs import menu_permission
 
 settings = dict(
         template_path = 'templates',
@@ -9,10 +9,10 @@ settings = dict(
         cookie_secret = 'aaaa',
         login_url = '/auth/user_login',
         xsrf_cookies = True,
-        # ui_methods= {
-        #     "menu_permission": menu_permission,
-        #     "get_flashed_messages": get_flashed_messages
-        # },
+        ui_methods= {
+            "menu_permission": menu_permission,
+            "get_flashed_messages": get_flashed_messages
+        },
         # pycket的配置信息
         pycket = {
              'engine': 'redis',  # 设置存储器类型

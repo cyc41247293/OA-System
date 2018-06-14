@@ -3,7 +3,7 @@
   <component name="RemoteMappingsManager">
     <list>
       <list>
-        <remote-mappings server-id="python@ssh://pyvip@192.168.115.128:22/home/pyvip/.virtualenvs/tornado_test_003/bin/python2.7" />
+        <remote-mappings server-id="python@ssh://ubuntu@192.168.10.128:22/home/ubuntu/.virtualenvs/tornado_test_003/bin/python" />
       </list>
     </list>
   </component>

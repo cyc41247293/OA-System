@@ -32,6 +32,8 @@
                 <input type="submit">
         </form>
         <img style="height: 100px;width:150px;" src="/static/images/useravatars/{{ current_user.avatar }}"><br/>
+
+
         <form method="post" action="/account/avatar" enctype="multipart/form-data">
                 {% module xsrf_form_html() %}
                 <input type="file" name="user_avatar" />

@@ -5,7 +5,7 @@
       <paths name="tornado_test_003">
         <serverdata>
           <mappings>
-            <mapping deploy="/home/pyvip/work/tornado_test_003 " local="$PROJECT_DIR$" />
+            <mapping deploy="/home/ubuntu/work/tornado_test_003" local="$PROJECT_DIR$" />
           </mappings>
         </serverdata>
       </paths>

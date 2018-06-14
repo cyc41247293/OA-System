@@ -13,32 +13,52 @@ from sqlalchemy import (create_engine, Column, Integer, String,
 from libs.db.dbsession import Base
 from libs.db.dbsession import dbSession
 
-
+from models.permission.permission_model import UserToRole
+from models.files.upload_file_model import FilesToUser, DelFilesToUser
 
 class User(Base):
     """用户表"""
+
     __tablename__ = 'user'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
 
     uuid = Column(String(36), unique=True, nullable=False, default=lambda: str(uuid4()))
     name = Column(String(50), nullable=False)
-    #_私有变量
+
     _password = Column('password', String(64), nullable=False)
     createtime = Column(DateTime, default=datetime.now)
     update_time = Column(DateTime)
     last_login = Column(DateTime)
 
 
-    loginnum = Column(Integer, default=0)   #登录次数
+    loginnum = Column(Integer, default=0)
     _locked = Column(Boolean, default=False, nullable=False)
-    _avatar = Column(String(64))    #图像存储路径
+    _avatar = Column(String(64))
     _isdelete = Column(Boolean, default=False, nullable=False)
 
     email = Column(String(50))
     mobile = Column(String(50))
     num = Column(String(50), unique=True)
     qq = Column(String(50))
+
+    # 角色表和用户表多对多查询关系
+    roles = relationship("Role", secondary=UserToRole.__table__)
+
+    article = relationship("Article", backref = 'user')
+
+    comments = relationship("Comment", backref = 'user')
+
+    second_comments = relationship("SecondComment", backref = 'user')
+
+    users_files = relationship("Files",  secondary=FilesToUser.__table__, lazy='dynamic')
+
+
+    users_files_del = relationship("Files",  secondary=DelFilesToUser.__table__)
+
+
+
+
 
 
     @classmethod
@@ -69,9 +89,9 @@ class User(Base):
         print self._hash_password(password)
         self._password = self._hash_password(password)
 
-    def auth_password(self, other_password):
+    def auth_password(self, other_password):#222
         if self._password is not None:
-            return self.password == PBKDF2.crypt(other_password, self.password)
+            return self.password == PBKDF2.crypt(other_password, self.password)#$p5k2$2537$Vxf3JkjY$ptQlKbQKbvSjXx.qLM/xsSq9bv6W1.8l
         else:
             return False
 
@@ -81,23 +101,29 @@ class User(Base):
 
 
     @avatar.setter #赋值
-    def avatar(self, image_data):
+    def avatar(self, image_data): #body
         class ValidationError(Exception):
             def __init__(self, message):
                 super(ValidationError, self).__init__(message)
+
         if 64 < len(image_data) < 1024 * 1024:
             import imghdr
             import os
-            ext = imghdr.what("", h=image_data)
+            ext = imghdr.what("", h=image_data) #可以返回一个图片扩展名
             print ext
             print self.uuid
             if ext in ['png', 'jpeg', 'jpg', 'gif', 'bmp'] and not self.is_xss_image(image_data):
                 if self._avatar and os.path.exists("static/images/useravatars/" + self._avatar):
                     os.unlink("static/images/useravatars/" + self._avatar)
                 file_path = str("static/images/useravatars/" + self.uuid + '.' + ext)
+
+
                 with open(file_path, 'wb') as f:
                     f.write(image_data)
                 self._avatar = self.uuid + '.' + ext
+
+
+
             else:
                 raise ValidationError("not in ['png', 'jpeg', 'gif', 'bmp']")
         else:

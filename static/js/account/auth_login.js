@@ -26,7 +26,6 @@ $(document).ready(function(){
                'password':  $('#password').val(),
                'code':  $('#code').val(),
                'captcha':  $('#captcha').val(),
-
             },
             'headers':{
                  "X-XSRFTOKEN":get_cookie("_xsrf")
@@ -46,7 +45,7 @@ $(document).ready(function(){
                     });
                }else {
                     swal({
-                    'title': '错误',
+                    'title': '错误111111',
                     'text': data['msg'],
                     'type': 'error',
                     'showCancelButton': false,

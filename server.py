@@ -12,6 +12,14 @@ from handlers.main.main_urls import handlers
 from libs.db import create_talbes
 from libs.db.dbsession import dbSession
 from models.account.account_user_model import User
+from models.files.upload_file_model import Files
+
+
+from models.permission.permission_model import (
+    Role, Permission, PermissionToRole, UserToRole, Handler, Menu
+)
+from models.article.article_model import (
+    Article, ArticleToTag, UserLikeArticle, Category,Comment,SecondComment, Tag)
 
 
 #定义一个默认的端口
@@ -29,8 +37,8 @@ if __name__ == "__main__":
 
     if options.u:
         user = User()
-        user.name = 'cyc'
-        user.password = 'cyc'
+        user.name = 'zhangsan'
+        user.password = '222'
         dbSession.add(user)
         dbSession.commit()
 

@@ -2,8 +2,8 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="ssh://pyvip@192.168.115.128:22/home/pyvip/.virtualenvs/tornado_test_003/bin/python2.7" name="tornado_test_003">
-        <fileTransfer host="192.168.115.128" port="22" accessType="SFTP">
+      <webServer id="ssh://ubuntu@192.168.10.128:22/home/ubuntu/.virtualenvs/tornado_test_003/bin/python" name="tornado_test_003">
+        <fileTransfer host="192.168.10.128" port="22" accessType="SFTP">
           <option name="port" value="22" />
         </fileTransfer>
       </webServer>
